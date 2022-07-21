@@ -1,0 +1,543 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="计算机视觉,图像操作" />
+
+
+<link rel="canonical" href="http://example.com/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/">
+
+
+
+  <title>
+OpenCV教程 - 人工智能 - 计算机视觉 |
+Yume Shoka = Hexo</title>
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">OpenCV教程
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-07-21 18:03:57">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-07-21T18:03:57+08:00">2022-07-21</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclwrdwyaj20zk0m8are.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="item" rel="index" title="In 计算机视觉"><span itemprop="name">计算机视觉</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="item" rel="index" title="In 人工智能"><span itemprop="name">人工智能</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="John Doe">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h3 id="读取图像"><a href="#读取图像" class="headerlink" title="读取图像"></a>读取图像</h3><p><img data-src="/../images/2022-07-19-15-52-45.png"></p>
+<p>对于彩色图像而言，-1和1的效果是相同的。</p>
+<p><img data-src="/../images/2022-07-19-15-43-27.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&quot;./images/img.png&quot;</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(img)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(img))</span><br><span class="line"><span class="built_in">print</span>(img.shape)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;python</span></span><br><span class="line"><span class="string">&lt;class &#x27;numpy.ndarray&#x27;&gt;</span></span><br><span class="line"><span class="string">(720, 1152, 3)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="显示图像"><a href="#显示图像" class="headerlink" title="显示图像"></a>显示图像</h3><p><img data-src="/../images/2022-07-19-15-48-35.png" alt="显示图像"></p>
+<h3 id="保存图像"><a href="#保存图像" class="headerlink" title="保存图像"></a>保存图像</h3><p><img data-src="/../images/2022-07-19-15-55-32.png"></p>
+<p>二.图像处理基础<br>1.图像的基本表示方法<br>1.1 二值图像<br>二值图像是指仅包含黑色和白色两种颜色的图像</p>
+<p><img data-src="/../images/2022-07-19-15-56-20.png"></p>
+<p>灰度图像有256个灰度级，用数值区间[0,255]来表示，其中255表示为纯白色，0表示为纯黑色<br>256个灰度级的数值恰好可以用一个字节（8位二进制值）来表示</p>
+<p>3.1 彩色图像<br>在RGB色彩空间中，存在R，G，B三个通道，每个通道的数值范围在[0,255]之间，我们利用这三个色彩通道的组合表示颜色<br>三种颜色经过混合可以配出常见的256×256×256&#x3D;16777216种颜色<br>在OpenCV中，通道的顺序是B→G→R</p>
+<p>2.像素处理<br>2.1 二值图像及灰度图像</p>
+<p>由于OpenCV没有二值图像这种数据类型，所以我们可以把二值图像理解为特殊的灰度图像<br>为了方便理解，我们首先使用Numpy库生成一个8×8大小的数组，来模拟黑色图像来进行处理</p>
+<p><img data-src="/../images/2022-07-19-16-03-54.png"></p>
+<p><img data-src="/../images/2022-07-19-16-04-43.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">img=np.array(Image.<span class="built_in">open</span>(<span class="string">&quot;./例.jpg&quot;</span>).convert(<span class="string">&#x27;L&#x27;</span>)) <span class="comment">#为了方便接下来对灰度图的演示，我们使用灰度图的方式打开&quot;./例.jpg&quot;</span></span><br><span class="line"><span class="built_in">print</span>(img)</span><br><span class="line">pylab.imshow(img)</span><br><span class="line">cv2.imwrite(<span class="string">&quot;./例—灰度图.jpg&quot;</span>,img)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-19-16-09-10.png"></p>
+<p><img data-src="/../images/2022-07-19-16-09-53.png"></p>
+<p>2.2 彩色图像</p>
+<p>RGB模式的彩色图在读入OpenCV内进行处理时，会按照方向依次读取RGB的B，G，R通道的像素点，其在OpenCV内以BGR模式的三维数组形式存储<br>例如：<br>img[0,0]访问图像img第0行第0列像素点的BRG值 [B,G,R]<br>img[0,0,0]访问img第0行第0列第0通道的像素值，会得到B通道第0行第0列的值<br>img[0,0,2]访问img第0行第0列第2通道的像素值，会得到R通道第0行第0列的值<br>为了方便理解，我们首先使用Numpy生成一个2×4×3大小的数组，用它来模拟一幅彩色图像并对其进行简单处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">blue=np.zeros((<span class="number">300</span>,<span class="number">300</span>,<span class="number">3</span>),dtype=np.uint8)</span><br><span class="line">blue[:,:,<span class="number">0</span>]=<span class="number">255</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;blue=&quot;</span>,blue)</span><br><span class="line">pylab.imshow(blue)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-19-16-17-34.png"></p>
+<p>这时候就有小伙伴发现，展示出来的图片是红色而不是蓝色！！！<br>这是因为pylab的imshow是以RGB的方式展示出来的，而不是cv2的BGR</p>
+<p><img data-src="/../images/2022-07-19-16-18-05.png"></p>
+<p><img data-src="/../images/2022-07-19-16-18-45.png"></p>
+<p>2.3 感兴趣区域（ROI）</p>
+<p>在图像处理的中，我们可能会对图像的某一个特定区域感兴趣，该区域被称为感兴趣的区域（ROI）。在设定感兴趣的区域ROI后，就可以对该区域进行整体操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a=cv2.imread(<span class="string">&quot;./例.jpg&quot;</span>) <span class="comment">#提取lena的面部</span></span><br><span class="line">face=a[<span class="number">50</span>:<span class="number">400</span>,<span class="number">500</span>:<span class="number">1000</span>] <span class="comment"># 前一个是纵轴，后一个是横轴，起始点为图像的左上角</span></span><br><span class="line">face=cv2.cvtColor(face,cv2.COLOR_BGR2RGB) <span class="comment">#将BGR转换成RGB</span></span><br><span class="line">pylab.imshow(face)</span><br><span class="line">cv2.imwrite(<span class="string">&quot;lena_face.jpg&quot;</span>,face)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-19-16-24-00.png" alt="打码"></p>
+<p>2.4 通道拆分</p>
+<p>在RGB图像中，图像由R，G，B三个通道构成。需要注意的是，在OpenCV中，通道是按照B，G，R通道顺序存储的</p>
+<p><img data-src="/../images/2022-07-19-16-41-17.png"></p>
+<p><img data-src="/../images/2022-07-19-16-44-22.png"></p>
+<p>2.5 通道合并</p>
+<p><img data-src="/../images/2022-07-19-16-46-25.png"></p>
+<p>2.6 获取图像属性<br>其实就是numpy的数组的属性</p>
+<p><img data-src="/../images/2022-07-19-16-52-46.png"></p>
+<p><img data-src="/../images/2022-07-19-16-53-28.png"></p>
+<p>三.图像运算<br>1.图像加法运算<br>1.1加号运算符</p>
+<p>对于+号运算，当对图像a，图像b进行加法求和时，遵循以下规则：</p>
+<p>当某位置像素相加得到的数值小于255时，该位置数值为两图像该位置像素相加之和<br>当某位置像素相加得到的数值大于255时，该位置数值为两像素该位置像素相加之和对256取模</p>
+<p><img data-src="/../images/2022-07-19-16-55-48.png"></p>
+<p>1.2 cv2.add()函数</p>
+<p>对于cv2.add()运算，当对图像a，图像b进行加法求和时，遵循以下规则：<br>当某位置像素相加得到的数值小于255时，该位置数值为两图像该位置像素相加之和<br>当某位置像素相加得到的数值大于255时，该位置数值为255</p>
+<p><img data-src="/../images/2022-07-19-16-59-46.png"></p>
+<p>2.图像加权运算</p>
+<p>所谓图像加权和，就是在计算两幅图像的像素值之和时，将每幅图像的权重考虑进来，可以用公式表示为dst&#x3D;saturate(src1×α+src×β+γ)</p>
+<p><img data-src="/../images/2022-07-19-17-03-40.png"></p>
+<p>3.位平面分解</p>
+<p>二进制位平面分解技术（BBD)<br>对于任何一个非负的整数都可以被一个二进制序列所表示，数学公式如下所示：<br><img data-src="/../images/2022-07-19-17-04-26.png"><br>对于一般灰度图像而言，其灰度值通常是一个0到255之间的十进制数，那么每一个像素都可以由8位二进制序列唯一表示。因此，BBD可以将灰度图像拆分成8个二进制平面。第一个位平面是由灰度图像中每一个像素的二进制表示的所有第一位所组成的，如下图我们展示了将一个lena图分解成八张位平面子图的效果。</p>
+<p><img data-src="/../images/2022-07-19-17-05-39.png"></p>
+<p><img data-src="/../images/2022-07-19-17-05-54.png"></p>
+<p>下图展示了将lena图分解后，各个平面图的样子，其中（a）为lena的原图，从(b)到（i)展示了从最低位平面到最高位平面，其中我们可以很明显发现第八张子图(i)最接近lena的原图，这也就说明了在组成一张图的过程中，高位的图往往起到了更加关键的作用。</p>
+<p><img data-src="/../images/2022-07-19-17-06-42.png"></p>
+<p><img data-src="/../images/2022-07-19-17-07-36.png"></p>
+<p>七.图像平滑处理<br>1.均值滤波<br>dst&#x3D;cv2.blur(src,ksize,anchor,borderType)</p>
+<p>dst是返回值<br>src是需要处理的图像<br>kszie是滤波核(卷积核)的大小<br>anchor是锚点，默认值是（-1，-1）一般无需更改<br>borderType是边界样式，一般无需更改<br>一般情况下，使用dst&#x3D;cv2.blur(src,ksize)即可<br>原理：它只取内核区域下所有像素的平均值并替换中心元素。3x3标准化的盒式过滤器如下所示：</p>
+<p><img data-src="/../images/2022-07-19-17-26-20.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.blur(lena_noise,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p>五.几何变换<br>1.缩放</p>
+<p><img data-src="/../images/2022-07-19-17-43-00.png"></p>
+<p><img data-src="/../images/2022-07-19-17-44-26.png"></p>
+<p>2.翻转</p>
+<p><img data-src="/../images/2022-07-19-17-45-21.png"></p>
+<p>3.仿射<br>仿射变换是指图像可以通过一系列的几何变换来实现平移，旋转等多种操作。该变换能够保持图像的平直性和平行性。<br>平直性是指图像经过仿射变换后，直线仍然是直线；<br>平行性是指图像在完成仿射变换后，平行线仍然是平行线。</p>
+<p><img data-src="/../images/2022-07-19-17-46-21.png"></p>
+<p><img data-src="/../images/2022-07-19-17-46-30.png"></p>
+<p>注意在上面中，变换矩阵的大小是固定的，为2x3.</p>
+<p><img data-src="/../images/2022-07-20-10-03-40.png"></p>
+<p>从上面的例子可以看出，在移动之后，原位置填充为0。<br>且函数的最后一个参数为原图像大小的元组。</p>
+<p>4.旋转<br>在使用函数cv2.warpAffine()对图像进行旋转时，可以通过函数cv2.getRotationMatrix2D()获得转换矩阵。该函数的语法格式为：<br>retval&#x3D;cv2.getRotationMatrix2D(centrer,angle,scale)<br>center为旋转中心点（含有两个元素的元组表示）<br>angle为旋转的角度，正数表示逆时针旋转，反之为逆时针旋转<br>scale为变换尺度（缩放大小）</p>
+<p><img data-src="/../images/2022-07-20-10-10-21.png"></p>
+<p>5.更复杂的仿射变换<br>面对更复杂的仿射变换，OpenCV提供了函数cv2.getAffineTransform()来生成放射函数cv2.warpAffine()所使用的转化矩阵M。该函数的语法格式为<br>retval&#x3D;cv2.getAffineTransform(src,dst)<br>src代表输入图像的三个点的坐标<br>dst代表输出图像的三个点的坐标</p>
+<p><img data-src="/../images/2022-07-20-10-16-41.png"></p>
+<p>6.重映射<br>把一幅图像的像素点放置到另一副图像内的指定位置，这个过程成为重映射。<br>OpenCV提供了多种重映射方式，但是我们有时希望使用自定义的方式来完成重映射。<br>OpenCV内的重映射函数cv2.remap()提供了更方便，更自由地映射方式，其语法格式如下:<br>dst&#x3D;cv2.remap(src,map1,map2,interpolation[,borderMode[,borderValue]])<br>式中：<br>dst代表目标图像，它和src具有相同的大小和类型<br>src代表原始图像<br>map1参数有两种可能的值：<br>–表示（x，y）点的一个映射<br>–表示CV_16SC2,CV_32FC1,CV_32FC2类型（x,y）点的x值。<br>map2参数有两种可能的值：<br>–map1表示（x，y）时，该值为空<br>–map1表示（x，y）点的x值时，该值是CV_16UC1,CV_32FC1类型（x，y）点的y值。<br>Interpolation代表插值方式，这里不支持INTER_AREA方法。<br>borderMode代表边界方式。<br>borderValue代表边界值，默认为0</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#例</span></span><br><span class="line">img=np.random.randint(<span class="number">0</span>,<span class="number">256</span>,size=[<span class="number">4</span>,<span class="number">5</span>],dtype=np.uint8)<span class="comment">#生成一个随机4*5的矩阵</span></span><br><span class="line">rows,cols=img.shape</span><br><span class="line">mapx=np.ones(img.shape,np.float32)*<span class="number">3</span></span><br><span class="line">mapy=np.ones(img.shape,np.float32)*<span class="number">0</span></span><br><span class="line">res=cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR) <span class="comment">#res的每一个位置都被设置成了img[0][3]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;img=\n&quot;</span>,img)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;mapx=\n&quot;</span>,mapx)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;mapy=\n&quot;</span>,mapy)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;rst=&#x27;\n&quot;</span>,res) </span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-10-20-00.png"></p>
+<p>重映射尚未看完</p>
+<p>六.阈值处理<br>阈值处理是值剔除图像内像素值高于一定值或低于一定值的像素点。例如，设定阈值为127，然后：</p>
+<p>将图像内所有像素值大于127的像素点的值设为255<br>将图像内所有像素值小于或等于127的像素点的值设为0<br>通过上述方法能够得到一幅444二值图像。如图6-1所示，按照上述阈值处理方法将一幅灰度图像处理为一幅二值图像，有效地实现了前景和背景的分离<br>OpenCV提供了函数cv2.threshold()和函数cv2.adaptive.Threshold()，用于实现阈值处理。</p>
+<p>1.threshold函数<br>retval,dst&#x3D;cv2.threshold(src,shresh,maxval,type)<br>式中:</p>
+<p>retval代表返回的阈值<br>dst代表阈值分割结果图像，与原始图像具有相同的大小和类型<br>src代表要进行阈值分割的图像，可以是多通道的，8位或32位浮点型数值<br>thresh代表要设定的阈值<br>maxval代表type参数位THRESH_BINARY或者THRESH_BINARY_INV类型时，需要设定的最大值<br>type代表阈值分割的类型，具体内容如下图所示</p>
+<p><img data-src="/../images/2022-07-20-10-23-54.png"></p>
+<p>尚未看完</p>
+<p>七.图像平滑处理<br>1.均值滤波<br>dst&#x3D;cv2.blur(src,ksize,anchor,borderType)</p>
+<p>dst是返回值<br>src是需要处理的图像<br>kszie是滤波核(卷积核)的大小<br>anchor是锚点，默认值是（-1，-1）一般无需更改<br>borderType是边界样式，一般无需更改<br>一般情况下，使用dst&#x3D;cv2.blur(src,ksize)即可<br>原理：它只取内核区域下所有像素的平均值并替换中心元素。3x3标准化的盒式过滤器如下所示：<br><img data-src="/../images/2022-07-20-10-28-24.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.blur(lena_noise,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br><span class="line">````</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">33</span>-<span class="number">08.</span>png)</span><br><span class="line"></span><br><span class="line">补充np.expand_dims()</span><br><span class="line"></span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">34</span>-<span class="number">34.</span>png)</span><br><span class="line"></span><br><span class="line">（<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)中，<span class="number">1</span>表示第一个方括号内只有一个元素，即只有一个`[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]`；<span class="number">2</span>表示第二个方括号内有两个元素，即为[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]和[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]；<span class="number">3</span>表示第三个方括号内有<span class="number">3</span>个元素。</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">0</span>)表示在<span class="number">0</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">41</span>-<span class="number">23.</span>png)</span><br><span class="line"></span><br><span class="line">在指定的维度插入之后，之前在此处的位置向后移动</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">1</span>)表示在<span class="number">1</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">44</span>-<span class="number">02.</span>png)</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">2</span>)表示在<span class="number">2</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">47</span>-<span class="number">47.</span>png)</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">3</span>)表示在<span class="number">3</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">48</span>-<span class="number">38.</span>png)</span><br><span class="line"></span><br><span class="line">能在(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)中插入的位置总共为<span class="number">4</span>个，再添加就会出现以下的警告，要不然也会在后面某一处提示AxisError。</span><br><span class="line">axis = -<span class="number">1</span> 也就是相当于在最后插入</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>方框滤波</span><br><span class="line">二、cv2.boxFilter(img,-<span class="number">1</span>,ksize,normalize=<span class="literal">True</span>) 方框滤波</span><br><span class="line">说明：当normalize=<span class="literal">True</span>时，与均值滤波结果相同， normalize=<span class="literal">False</span>，表示对加和后的结果不进行平均操作，大于<span class="number">255</span>的使用<span class="number">255</span>表示。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal_1=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_deal_2=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>),normalize=<span class="literal">False</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_1 = np.concatenate((np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_2= np.concatenate((np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal_1)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">pylab.imshow(lena_deal_2)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-10-55-33.png"></p>
+<p>3.高斯滤波<br>cv2.GaussianBlur(img, ksize,sigmaX,sigmaY)<br>说明：sigmaX,sigmaY分别表示X,Y方向的标准偏差。如果仅指定了sigmaX，则sigmaY与sigmaX相同.如果两者都为零，则根据内核大小计算它们。<br>原理：核中区域贡献率与距离区域中心成正比，权重与高斯分布相关。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.GaussianBlur(lena_noise,(<span class="number">5</span>,<span class="number">5</span>),<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-12-22-26.png"></p>
+<p>4.中值滤波<br>cv2.medianBlur(img, k)<br>说明：imgs为原图像，k为方框的尺寸，相当于将方框内的个值进行排序，取中值作为当前值。<br>原理：中心点的像素被核中中位数的像素值代替。<br>缺点：由于需要对周围的像素值进行排序所以需要的计算量比较大</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.medianBlur(lena_noise,<span class="number">5</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-12-25-21.png"></p>
+<p>5.双边滤波<br>cv2.bilateralFilter(img,d, sigmaColor, sigmaSpace)<br>说明：<br>d为邻域直径，sigmaColor为空间高斯函数标准差，参数越大，临近像素将会在越远的地方越小。<br>sigmaSpace灰度值相似性高斯函数标准差，参数越大，那些颜色足够相近的的颜色的影响越大。</p>
+<p>双边滤波是一种非线性的滤波方法，是结合图像的空间邻近度和像素值相似度的一种折衷处理，同时考虑空间与信息和灰度相似性，达到保边去噪的目的。<br>具有简单、非迭代、局部处理的特点。<br>之所以能够达到保边去噪的滤波效果是因为滤波器由两个函数构成：<br>1.一个函数是由几何空间距离决定滤波器系数<br>2.另一个是由像素差值决定滤波器系数。<br>缺点：处理耗时。<br>优点：在滤波的同时能保证一定的边缘信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.bilateralFilter(lena_noise,<span class="number">25</span>,<span class="number">100</span>,<span class="number">100</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-12-30-15.png"></p>
+<p>6.2D卷积<br>dst&#x3D;cv2.filter2D(src,ddepth,ksize,anchor,delta,borderType)</p>
+<p>dst是返回值<br>src是需要处理的图像<br>ddepth处理结果图像的深度，如果是-1表示与原始图像使用相同的图片深度<br>kszie是滤波核(卷积核)的大小<br>anchor是锚点，默认值是（-1，-1）一般无需更改<br>delta修正值，作为可选项。如果存在，会在结果上加上该值作为最终滤波的处理结果<br>borderType是边界样式，一般无需更改<br>一般情况下，使用dst&#x3D;cv2.blur(src,ksize)即可<br>原理：它只取内核区域下所有像素的平均值并替换中心元素。3x3标准化的盒式过滤器如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">kernel = np.ones((<span class="number">5</span>,<span class="number">5</span>),np.float32)/<span class="number">25</span></span><br><span class="line">lena_deal = cv2.filter2D(lena_noise,-<span class="number">1</span>,kernel)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-20-12-35-09.png"></p>
+
+      <div class="tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i> 计算机视觉</a>
+          <a href="/tags/%E5%9B%BE%E5%83%8F%E6%93%8D%E4%BD%9C/" rel="tag"><i class="ic i-tag"></i> 图像操作</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-07-21 18:06:20" itemprop="dateModified" datetime="2022-07-21T18:06:20+08:00">2022-07-21</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="John Doe WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="John Doe Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="John Doe PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>John Doe <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/" title="OpenCV教程">http://example.com/2022/07/21/OpenCV教程/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph4lm9i7j20zk0m84qp.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 人工智能</span>
+  <h3>ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F"><span class="toc-number">1.</span> <span class="toc-text">读取图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">显示图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%9B%BE%E5%83%8F"><span class="toc-number">3.</span> <span class="toc-text">保存图像</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/" rel="bookmark" title="OpenCV教程">OpenCV教程</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="John Doe"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">John Doe</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">4</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">3</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">5</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" title="In 计算机视觉">计算机视觉</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/" title="OpenCV教程">OpenCV教程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/07/21/OpenCV教程/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
