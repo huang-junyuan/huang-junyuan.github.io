@@ -1,0 +1,525 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="计算机视觉,ros" />
+
+
+<link rel="canonical" href="http://example.com/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/">
+
+
+
+  <title>
+OpenCV轮廓检测 - 人工智能 |
+Yume Shoka = Hexo</title>
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">OpenCV轮廓检测
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-07-21 17:42:02">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-07-21T17:42:02+08:00">2022-07-21</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="item" rel="index" title="In 人工智能"><span itemprop="name">人工智能</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="John Doe">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="一、轮廓检测基础理论"><a href="#一、轮廓检测基础理论" class="headerlink" title="一、轮廓检测基础理论"></a>一、轮廓检测基础理论</h1><h2 id="1、轮廓概述"><a href="#1、轮廓概述" class="headerlink" title="1、轮廓概述"></a>1、轮廓概述</h2><p><strong>边缘和轮廓区别：边缘是零散的点，轮廓是整体。</strong></p>
+<p><strong>在二值图中找轮廓。</strong></p>
+<h2 id="2、API介绍"><a href="#2、API介绍" class="headerlink" title="2、API介绍"></a>2、API介绍</h2><h3 id="1、cv-findContours函数（查找轮廓）"><a href="#1、cv-findContours函数（查找轮廓）" class="headerlink" title="1、cv.findContours函数（查找轮廓）"></a>1、cv.findContours函数（查找轮廓）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contours, hierarchy = cv2.findContours(img,mode,method)</span><br></pre></td></tr></table></figure>
+
+<p>**参数： **</p>
+<p><img data-src="/../images/20210819172450303.png" alt="图 1"></p>
+<p><img data-src="/../images/20210819172726924.png" alt="图 2"></p>
+<p>** 返回：**<br><strong>contours：轮廓</strong><br><strong>hierarchy：层级</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、根据二值图找到轮廓</span></span><br><span class="line">    contours, hierarchy = cv.findContours(binary, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)</span><br><span class="line">    <span class="comment"># 轮廓      层级                               轮廓检索模式(推荐此)  轮廓逼近方法</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2、cv-drawContours函数（画出轮廓）"><a href="#2、cv-drawContours函数（画出轮廓）" class="headerlink" title="2、cv.drawContours函数（画出轮廓）"></a>2、cv.drawContours函数（画出轮廓）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、画出轮廓</span></span><br><span class="line">    dst = cv.drawContours(img, contours, -<span class="number">1</span>,                (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    <span class="comment">#                           轮廓     第几个(默认-1：所有)   颜色       线条厚度</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h3 id="检测轮廓并画出：（用二值图检测轮廓）"><a href="#检测轮廓并画出：（用二值图检测轮廓）" class="headerlink" title="检测轮廓并画出：（用二值图检测轮廓）"></a>检测轮廓并画出：（用二值图检测轮廓）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取轮廓</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetGontours</span>():</span><br><span class="line">    <span class="comment"># 1、根据二值图找到轮廓</span></span><br><span class="line">    contours, hierarchy = cv.findContours(binary, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)</span><br><span class="line">    <span class="comment"># 轮廓      层级                               轮廓检索模式(推荐此)  轮廓逼近方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、画出轮廓</span></span><br><span class="line">    dst = cv.drawContours(img, contours, -<span class="number">1</span>,                (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    <span class="comment">#                           轮廓     第几个(默认-1：所有)   颜色       线条厚度</span></span><br><span class="line"></span><br><span class="line">    cv.imshow(<span class="string">&#x27;dst&#x27;</span>, dst)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="二、代码及效果"><a href="#二、代码及效果" class="headerlink" title="二、代码及效果"></a>二、代码及效果</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓提取</span></span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转二进制图像</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ToBinray</span>():</span><br><span class="line">    <span class="keyword">global</span> imgray, binary</span><br><span class="line">    <span class="comment"># 1、灰度图</span></span><br><span class="line">    imgray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;imgray&#x27;</span>, imgray)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、二进制图像</span></span><br><span class="line">    ret, binary = cv.threshold(imgray, <span class="number">127</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 阈值 二进制图像</span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;binary&#x27;</span>, binary)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取轮廓</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetGontours</span>():</span><br><span class="line">    <span class="comment"># 1、根据二值图找到轮廓</span></span><br><span class="line">    contours, hierarchy = cv.findContours(binary, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)</span><br><span class="line">    <span class="comment"># 轮廓      层级                               轮廓检索模式(推荐此)  轮廓逼近方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、画出轮廓</span></span><br><span class="line">    dst = cv.drawContours(img, contours, -<span class="number">1</span>,                (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    <span class="comment">#                           轮廓     第几个(默认-1：所有)   颜色       线条厚度</span></span><br><span class="line"></span><br><span class="line">    cv.imshow(<span class="string">&#x27;dst&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    img = cv.imread(<span class="string">&#x27;Resource/test11.jpg&#x27;</span>)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line"></span><br><span class="line">    ToBinray()          <span class="comment">#转二进制</span></span><br><span class="line"></span><br><span class="line">    GetGontours()       <span class="comment">#提取轮廓</span></span><br><span class="line"></span><br><span class="line">    cv.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img data-src="/../images/20210820153953924.png" alt="图 3"></p>
+<p><img data-src="/../images/20210820150238154.png" alt="图 4"></p>
+<p><img data-src="/../images/20210819203934431.png" alt="图 5"></p>
+<p><img data-src="/../images/20210819204029286.png" alt="图 6"></p>
+<p><img data-src="/../images/2021081920431117.png" alt="图 7"></p>
+<h1 id="三、轮廓检测的属性"><a href="#三、轮廓检测的属性" class="headerlink" title="三、轮廓检测的属性"></a>三、轮廓检测的属性</h1><h2 id="1、画出单个轮廓"><a href="#1、画出单个轮廓" class="headerlink" title="1、画出单个轮廓"></a>1、画出单个轮廓</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画出第一个轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line">    dst = cv.drawContours(img, cnt, -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;dst1&#x27;</span>, dst)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img data-src="/../images/20210820152125673.png" alt="图 8"></p>
+<p> <br><img data-src="/../images/20210820154032692.png" alt="图 9"></p>
+<h2 id="2、显示面积和周长"><a href="#2、显示面积和周长" class="headerlink" title="2、显示面积和周长"></a>2、显示面积和周长</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取轮廓面积</span></span><br><span class="line">    area = cv.contourArea(cnt)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓面积：&quot;</span>, area)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 周长（True表示合并）</span></span><br><span class="line">    perimeter = cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓周长：&quot;</span>, perimeter)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="代码及效果"><a href="#代码及效果" class="headerlink" title="代码及效果"></a>代码及效果</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取轮廓信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetContours_Attrib</span>():</span><br><span class="line">    <span class="comment"># 画出第一个轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line">    dst = cv.drawContours(img, cnt, -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;dst1&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取轮廓面积</span></span><br><span class="line">    area = cv.contourArea(cnt)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓面积：&quot;</span>, area)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 周长（True表示合并）</span></span><br><span class="line">    perimeter = cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓周长：&quot;</span>, perimeter)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img data-src="/../images/20210820152416779.png" alt="图 10"></p>
+<h1 id="四、近似轮廓"><a href="#四、近似轮廓" class="headerlink" title="四、近似轮廓"></a>四、近似轮廓</h1><h2 id="1、步骤"><a href="#1、步骤" class="headerlink" title="1、步骤"></a>1、步骤</h2><blockquote>
+<p>1、获取轮廓外围</p>
+</blockquote>
+<blockquote>
+<p>2、设置精度（从轮廓到近似轮廓的最大距离）</p>
+</blockquote>
+<blockquote>
+<p>3、获取近似轮廓</p>
+</blockquote>
+<blockquote>
+<p>4、绘制轮廓</p>
+</blockquote>
+<h2 id="2、API"><a href="#2、API" class="headerlink" title="2、API"></a>2、API</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、设置精度（从轮廓到近似轮廓的最大距离）</span></span><br><span class="line">    epsilon = <span class="number">0.03</span> * cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                            轮廓  闭合轮廓还是曲线</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3、获取近似轮廓</span></span><br><span class="line">    approx = cv.approxPolyDP(cnt, epsilon,          <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                             近似度(这里为10%)   闭合轮廓还是曲线</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="3、实现"><a href="#3、实现" class="headerlink" title="3、实现"></a>3、实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓近似</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetApprox</span>():</span><br><span class="line">    <span class="comment"># 1、取外围轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、设置精度（从轮廓到近似轮廓的最大距离）</span></span><br><span class="line">    epsilon = <span class="number">0.05</span> * cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                            轮廓  闭合轮廓还是曲线</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、获取近似轮廓</span></span><br><span class="line">    approx = cv.approxPolyDP(cnt, epsilon,          <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                             近似度(这里为5%)   闭合轮廓还是曲线</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4、绘制轮廓</span></span><br><span class="line">    draw_img = img.copy()</span><br><span class="line">    res = cv.drawContours(draw_img, [approx], -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;res&quot;</span>, res)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="各精度的近似轮廓："><a href="#各精度的近似轮廓：" class="headerlink" title="各精度的近似轮廓："></a>各精度的近似轮廓：</h3><p>精度<strong>epsilon&#x3D;0.01</strong>时的近似轮廓： </p>
+<p><img data-src="/../images/20210820160020922.png" alt="图 11"></p>
+<p>精度<strong>epsilon&#x3D;0.02</strong>时的近似轮廓：</p>
+<p><img data-src="/../images/20210820155605982.png" alt="图 12"><br>精度<strong>epsilon&#x3D;0.03</strong>时的近似轮廓：</p>
+<p><img data-src="/../images/20210820155713768.png" alt="图 13"></p>
+<p>精度<strong>epsilon&#x3D;0.04</strong>时的近似轮廓：</p>
+<p><img data-src="/../images/20210820155750313.png" alt="图 14"></p>
+<p> 精度<strong>epsilon&#x3D;0.05</strong>时的近似轮廓：</p>
+<p><img data-src="/../images/20210820155926555.png" alt="图 15"></p>
+<h1 id="五、边界矩形和外接圆"><a href="#五、边界矩形和外接圆" class="headerlink" title="五、边界矩形和外接圆"></a>五、边界矩形和外接圆</h1><p><strong>边界矩形：根据坐标、长宽绘制矩形。</strong><br><strong>外接圆：根据圆心坐标、半径绘制圆。</strong></p>
+<h2 id="1、边界矩形"><a href="#1、边界矩形" class="headerlink" title="1、边界矩形"></a>1、边界矩形</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取边界矩形</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">BoundingRect</span>():</span><br><span class="line">    <span class="comment"># 1、取外围轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、获取正方形坐标长宽</span></span><br><span class="line">    x, y, w, h = cv.boundingRect(cnt)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、画出矩形</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.rectangle(dst, (x,y),(x+w,y+h), (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;dst&quot;</span>, dst)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img data-src="/../images/20210820163635792.png" alt="图 16"></p>
+<h2 id="2、外接圆"><a href="#2、外接圆" class="headerlink" title="2、外接圆"></a>2、外接圆</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取外接圆</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Circle</span>():</span><br><span class="line">    <span class="comment"># 1、获取第一个轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、获取外接圆</span></span><br><span class="line">    (x, y), radius = cv.minEnclosingCircle(cnt)</span><br><span class="line">    <span class="comment"># 坐标   半径</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、画圆</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.circle(dst, (<span class="built_in">int</span>(x), <span class="built_in">int</span>(y)), <span class="built_in">int</span>(radius), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;dst&quot;</span>, dst)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img data-src="/../images/20210820164048267.png" alt="图 17"></p>
+<h1 id="总代码"><a href="#总代码" class="headerlink" title="总代码"></a>总代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓提取、属性、近似轮廓、边界矩形和外接圆</span></span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转二进制图像</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ToBinray</span>():</span><br><span class="line">    <span class="keyword">global</span> imgray, binary</span><br><span class="line">    <span class="comment"># 1、灰度图</span></span><br><span class="line">    imgray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;imgray&#x27;</span>, imgray)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、二进制图像</span></span><br><span class="line">    ret, binary = cv.threshold(imgray, <span class="number">127</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 阈值 二进制图像</span></span><br><span class="line">    cv.imshow(<span class="string">&#x27;binary&#x27;</span>, binary)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取轮廓</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetContours</span>():</span><br><span class="line">    <span class="keyword">global</span> contours</span><br><span class="line">    <span class="comment"># 1、根据二值图找到轮廓</span></span><br><span class="line">    contours, hierarchy = cv.findContours(binary, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)</span><br><span class="line">    <span class="comment"># 轮廓      层级                               轮廓检索模式(推荐此)  轮廓逼近方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、画出轮廓</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.drawContours(dst, contours, -<span class="number">1</span>,                (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    <span class="comment">#                           轮廓     第几个(默认-1：所有)   颜色       线条厚度</span></span><br><span class="line"></span><br><span class="line">    cv.imshow(<span class="string">&#x27;contours&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取轮廓信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetContours_Attrib</span>():</span><br><span class="line">    <span class="comment"># 画出第一个轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.drawContours(dst, cnt, -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;contour0&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取轮廓面积</span></span><br><span class="line">    area = cv.contourArea(cnt)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓面积：&quot;</span>, area)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 周长（True表示合并）</span></span><br><span class="line">    perimeter = cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;轮廓周长：&quot;</span>, perimeter)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮廓近似</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GetApprox</span>():</span><br><span class="line">    <span class="comment"># 1、取外围轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、设置精度（从轮廓到近似轮廓的最大距离）</span></span><br><span class="line">    epsilon = <span class="number">0.01</span> * cv.arcLength(cnt, <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                            轮廓  闭合轮廓还是曲线</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、获取近似轮廓</span></span><br><span class="line">    approx = cv.approxPolyDP(cnt, epsilon,          <span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#                             近似度(这里为5%)   闭合轮廓还是曲线</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4、绘制轮廓</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.drawContours(dst, [approx], -<span class="number">1</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;apporx&quot;</span>, dst)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取边界矩形</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">BoundingRect</span>():</span><br><span class="line">    <span class="comment"># 1、取外围轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、获取正方形坐标长宽</span></span><br><span class="line">    x, y, w, h = cv.boundingRect(cnt)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、画出矩形</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.rectangle(dst, (x,y),(x+w,y+h), (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;rect&quot;</span>, dst)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取外接圆</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Circle</span>():</span><br><span class="line">    <span class="comment"># 1、获取第一个轮廓</span></span><br><span class="line">    cnt = contours[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、获取外接圆</span></span><br><span class="line">    (x, y), radius = cv.minEnclosingCircle(cnt)</span><br><span class="line">    <span class="comment"># 坐标   半径</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3、画圆</span></span><br><span class="line">    dst = img.copy()</span><br><span class="line">    dst = cv.circle(dst, (<span class="built_in">int</span>(x), <span class="built_in">int</span>(y)), <span class="built_in">int</span>(radius), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示</span></span><br><span class="line">    cv.imshow(<span class="string">&quot;circle&quot;</span>, dst)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    img = cv.imread(<span class="string">&#x27;Resource/contour.jpg&#x27;</span>)</span><br><span class="line">    cv.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line"></span><br><span class="line">    ToBinray()              <span class="comment">#转二进制</span></span><br><span class="line"></span><br><span class="line">    GetContours()           <span class="comment">#提取轮廓</span></span><br><span class="line"></span><br><span class="line">    GetContours_Attrib()    <span class="comment">#获取轮廓信息</span></span><br><span class="line"></span><br><span class="line">    GetApprox()             <span class="comment">#轮廓近似</span></span><br><span class="line"></span><br><span class="line">    BoundingRect()          <span class="comment">#边界矩形</span></span><br><span class="line"></span><br><span class="line">    Circle()                <span class="comment">#外接圆</span></span><br><span class="line"></span><br><span class="line">    cv.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVBWNDExNzc0eT9wPTI1">https://www.bilibili.com/video/BV1PV411774y?p=25</span></p>
+<p><span class="exturl" data-url="aHR0cDovL3dvc2hpY3Zlci5jb20vRmlmdGhTZWN0aW9uLzRfOV8yXyVFOCVCRCVBRSVFNSVCQiU5MyVFNyU4OSVCOSVFNSVCRSU4MS8=">http://woshicver.com/FifthSection/4_9_2_%E8%BD%AE%E5%BB%93%E7%89%B9%E5%BE%81&#x2F;</span></p>
+
+      <div class="tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i> 计算机视觉</a>
+          <a href="/tags/ros/" rel="tag"><i class="ic i-tag"></i> ros</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-07-21 17:45:24" itemprop="dateModified" datetime="2022-07-21T17:45:24+08:00">2022-07-21</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="John Doe WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="John Doe Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="John Doe PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>John Doe <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">http://example.com/2022/07/21/OpenCV轮廓检测/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/07/21/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciryrr3rj20zk0m8nhk.jpg" title="Hello World">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Hello World</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicivghyooj20zk0m8dir.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 人工智能</span>
+  <h3>ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">一、轮廓检测基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%BD%AE%E5%BB%93%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1、轮廓概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81API%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">2、API介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81cv-findContours%E5%87%BD%E6%95%B0%EF%BC%88%E6%9F%A5%E6%89%BE%E8%BD%AE%E5%BB%93%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、cv.findContours函数（查找轮廓）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81cv-drawContours%E5%87%BD%E6%95%B0%EF%BC%88%E7%94%BB%E5%87%BA%E8%BD%AE%E5%BB%93%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、cv.drawContours函数（画出轮廓）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%BD%AE%E5%BB%93%E5%B9%B6%E7%94%BB%E5%87%BA%EF%BC%9A%EF%BC%88%E7%94%A8%E4%BA%8C%E5%80%BC%E5%9B%BE%E6%A3%80%E6%B5%8B%E8%BD%AE%E5%BB%93%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">检测轮廓并画出：（用二值图检测轮廓）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81%E5%8F%8A%E6%95%88%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">二、代码及效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">三、轮廓检测的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%94%BB%E5%87%BA%E5%8D%95%E4%B8%AA%E8%BD%AE%E5%BB%93"><span class="toc-number">4.1.</span> <span class="toc-text">1、画出单个轮廓</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%98%BE%E7%A4%BA%E9%9D%A2%E7%A7%AF%E5%92%8C%E5%91%A8%E9%95%BF"><span class="toc-number">4.2.</span> <span class="toc-text">2、显示面积和周长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%8F%8A%E6%95%88%E6%9E%9C"><span class="toc-number">4.3.</span> <span class="toc-text">代码及效果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%91%E4%BC%BC%E8%BD%AE%E5%BB%93"><span class="toc-number">5.</span> <span class="toc-text">四、近似轮廓</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%AD%A5%E9%AA%A4"><span class="toc-number">5.1.</span> <span class="toc-text">1、步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81API"><span class="toc-number">5.2.</span> <span class="toc-text">2、API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.</span> <span class="toc-text">3、实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">5.3.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%B2%BE%E5%BA%A6%E7%9A%84%E8%BF%91%E4%BC%BC%E8%BD%AE%E5%BB%93%EF%BC%9A"><span class="toc-number">5.3.2.</span> <span class="toc-text">各精度的近似轮廓：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BE%B9%E7%95%8C%E7%9F%A9%E5%BD%A2%E5%92%8C%E5%A4%96%E6%8E%A5%E5%9C%86"><span class="toc-number">6.</span> <span class="toc-text">五、边界矩形和外接圆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%BE%B9%E7%95%8C%E7%9F%A9%E5%BD%A2"><span class="toc-number">6.1.</span> <span class="toc-text">1、边界矩形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%A4%96%E6%8E%A5%E5%9C%86"><span class="toc-number">6.2.</span> <span class="toc-text">2、外接圆</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%BB%A3%E7%A0%81"><span class="toc-number">7.</span> <span class="toc-text">总代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" rel="bookmark" title="OpenCV轮廓检测">OpenCV轮廓检测</a></li><li><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" rel="bookmark" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="John Doe"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">John Doe</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">3</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">1</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">4</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2022/07/21/hello-world/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/07/21/OpenCV轮廓检测/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
