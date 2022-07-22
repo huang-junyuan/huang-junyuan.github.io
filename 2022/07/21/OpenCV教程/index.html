@@ -102,12 +102,12 @@ yuan = xi</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
         </ul>
       </div>
     </header>
@@ -247,7 +247,19 @@ yuan = xi</title>
 <p>尚未看完</p>
 <p>七.图像平滑处理<br>1.均值滤波<br>dst&#x3D;cv2.blur(src,ksize,anchor,borderType)</p>
 <p>dst是返回值<br>src是需要处理的图像<br>kszie是滤波核(卷积核)的大小<br>anchor是锚点，默认值是（-1，-1）一般无需更改<br>borderType是边界样式，一般无需更改<br>一般情况下，使用dst&#x3D;cv2.blur(src,ksize)即可<br>原理：它只取内核区域下所有像素的平均值并替换中心元素。3x3标准化的盒式过滤器如下所示：<br><img data-src="/../images/2022-07-20-10-28-24.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.blur(lena_noise,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br><span class="line">````</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">33</span>-<span class="number">08.</span>png)</span><br><span class="line"></span><br><span class="line">补充np.expand_dims()</span><br><span class="line"></span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">34</span>-<span class="number">34.</span>png)</span><br><span class="line"></span><br><span class="line">（<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)中，<span class="number">1</span>表示第一个方括号内只有一个元素，即只有一个`[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]`；<span class="number">2</span>表示第二个方括号内有两个元素，即为[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]和[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]；<span class="number">3</span>表示第三个方括号内有<span class="number">3</span>个元素。</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">0</span>)表示在<span class="number">0</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">41</span>-<span class="number">23.</span>png)</span><br><span class="line"></span><br><span class="line">在指定的维度插入之后，之前在此处的位置向后移动</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">1</span>)表示在<span class="number">1</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">44</span>-<span class="number">02.</span>png)</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">2</span>)表示在<span class="number">2</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">47</span>-<span class="number">47.</span>png)</span><br><span class="line"></span><br><span class="line">np.expand_dims(a, axis=<span class="number">3</span>)表示在<span class="number">3</span>位置添加数据,转换结果如下：</span><br><span class="line">![](../images/<span class="number">2022</span>-07-<span class="number">20</span>-<span class="number">10</span>-<span class="number">48</span>-<span class="number">38.</span>png)</span><br><span class="line"></span><br><span class="line">能在(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)中插入的位置总共为<span class="number">4</span>个，再添加就会出现以下的警告，要不然也会在后面某一处提示AxisError。</span><br><span class="line">axis = -<span class="number">1</span> 也就是相当于在最后插入</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>方框滤波</span><br><span class="line">二、cv2.boxFilter(img,-<span class="number">1</span>,ksize,normalize=<span class="literal">True</span>) 方框滤波</span><br><span class="line">说明：当normalize=<span class="literal">True</span>时，与均值滤波结果相同， normalize=<span class="literal">False</span>，表示对加和后的结果不进行平均操作，大于<span class="number">255</span>的使用<span class="number">255</span>表示。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal_1=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_deal_2=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>),normalize=<span class="literal">False</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_1 = np.concatenate((np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_2= np.concatenate((np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal_1)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">pylab.imshow(lena_deal_2)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal=cv2.blur(lena_noise,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img data-src="/../images/2022-07-20-10-33-08.png"></p>
+<p>补充np.expand_dims()</p>
+<p><img data-src="/../images/2022-07-20-10-34-34.png"></p>
+<p>（1, 2, 3)中，1表示第一个方括号内只有一个元素，即只有一个<code>[[1,2,3],[4,5,6]]</code>；2表示第二个方括号内有两个元素，即为[1,2,3]和[4,5,6]；3表示第三个方括号内有3个元素。</p>
+<p>np.expand_dims(a, axis&#x3D;0)表示在0位置添加数据,转换结果如下：<br><img data-src="/../images/2022-07-20-10-41-23.png"></p>
+<p>在指定的维度插入之后，之前在此处的位置向后移动</p>
+<p>np.expand_dims(a, axis&#x3D;1)表示在1位置添加数据,转换结果如下：<br><img data-src="/../images/2022-07-20-10-44-02.png"></p>
+<p>np.expand_dims(a, axis&#x3D;2)表示在2位置添加数据,转换结果如下：<br><img data-src="/../images/2022-07-20-10-47-47.png"></p>
+<p>np.expand_dims(a, axis&#x3D;3)表示在3位置添加数据,转换结果如下：<br><img data-src="/../images/2022-07-20-10-48-38.png"></p>
+<p>能在(1,2,3)中插入的位置总共为4个，再添加就会出现以下的警告，要不然也会在后面某一处提示AxisError。<br>axis &#x3D; -1 也就是相当于在最后插入</p>
+<p>2.方框滤波<br>二、cv2.boxFilter(img,-1,ksize,normalize&#x3D;True) 方框滤波<br>说明：当normalize&#x3D;True时，与均值滤波结果相同， normalize&#x3D;False，表示对加和后的结果不进行平均操作，大于255的使用255表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">lena_deal_1=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">lena_deal_2=cv2.boxFilter(lena_noise,-<span class="number">1</span>,(<span class="number">5</span>,<span class="number">5</span>),normalize=<span class="literal">False</span>)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_1 = np.concatenate((np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1, axis = <span class="number">2</span>), np.expand_dims(lena_deal_1,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal_2= np.concatenate((np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>), np.expand_dims(lena_deal_2, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal_1)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">pylab.imshow(lena_deal_2)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="/../images/2022-07-20-10-55-33.png"></p>
 <p>3.高斯滤波<br>cv2.GaussianBlur(img, ksize,sigmaX,sigmaY)<br>说明：sigmaX,sigmaY分别表示X,Y方向的标准偏差。如果仅指定了sigmaX，则sigmaY与sigmaX相同.如果两者都为零，则根据内核大小计算它们。<br>原理：核中区域贡献率与距离区域中心成正比，权重与高斯分布相关。</p>
@@ -268,6 +280,39 @@ yuan = xi</title>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lena_noise=cv2.imread(<span class="string">&quot;噪声lena.jpg&quot;</span>,<span class="number">0</span>)</span><br><span class="line">kernel = np.ones((<span class="number">5</span>,<span class="number">5</span>),np.float32)/<span class="number">25</span></span><br><span class="line">lena_deal = cv2.filter2D(lena_noise,-<span class="number">1</span>,kernel)</span><br><span class="line">lena_noise = np.concatenate((np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>), np.expand_dims(lena_noise, axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">lena_deal = np.concatenate((np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal, axis = <span class="number">2</span>), np.expand_dims(lena_deal,axis = <span class="number">2</span>)),</span><br><span class="line">                         axis = -<span class="number">1</span>)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">pylab.imshow(lena_noise)</span><br><span class="line">pylab.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">pylab.imshow(lena_deal)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="/../images/2022-07-20-12-35-09.png"></p>
+<h2 id="C-部分"><a href="#C-部分" class="headerlink" title="C++部分"></a>C++部分</h2><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>安装好OpenCV后，打开的OpenCV文件夹如下：</p>
+<p><img data-src="/../images/2022-07-22-11-25-47.png"></p>
+<p><img data-src="/../images/2022-07-22-11-27-25.png"></p>
+<p>如果是VS2015，则选择vc14；如果是VS2017或者19，则选择vc15，选择vc14也没有问题。</p>
+<p><img data-src="/../images/2022-07-22-11-38-03.png"></p>
+<p>配置成release版本的</p>
+<p><img data-src="/../images/2022-07-22-11-57-32.png"></p>
+<p>右击release，点击属性。<br><img data-src="/../images/2022-07-22-11-58-12.png"></p>
+<p>配置VC++目录下的包含目录和库目录<br><img data-src="/../images/2022-07-22-11-59-12.png"></p>
+<p><img data-src="/../images/2022-07-22-12-00-07.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\software\opencv\build\include\opencv2</span><br><span class="line"></span><br><span class="line">D:\software\opencv\build\include</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/../images/2022-07-22-12-00-56.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\software\opencv\build\x64\vc15\lib</span><br></pre></td></tr></table></figure>
+
+<p>在配置 <code>链接器</code>的<code>输入</code>中的<code>附加依赖项</code>，<br><img data-src="/../images/2022-07-22-12-01-38.png"></p>
+<p><img data-src="/../images/2022-07-22-12-02-34.png"></p>
+<p><img data-src="/../images/2022-07-22-12-03-30.png"></p>
+<p>后面加d的表示debug版本的，因为上面配置的是release版本的，所以选择不加d的。</p>
+<p><img data-src="/../images/2022-07-22-12-10-02.png"></p>
+<p>配置环境变量，由于使用的是vs2022，所以配置的是vc15的。</p>
+<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat img = <span class="built_in">imread</span>(<span class="string">&quot;D:\\Temp\\images\\img.jpg&quot;</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;img&quot;</span>, img);</span><br><span class="line">	<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">destroyAllWindows</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>cd <protobuf-root-dir><br>mkdir build-2022<br>cd build-2022<br>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -Dprotobuf_BUILD_TESTS&#x3D;OFF -Dprotobuf_MSVC_STATIC_RUNTIME&#x3D;OFF ..&#x2F;cmake<br>nmake<br>nmake install</p>
+<p>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubi5naXQ=">https://github.com/Tencent/ncnn.git</span><br>cd ncnn<br>git submodule update –init         # 如果这一步一直更新不了的话，需要把cmake编译时候的-DNCNN_VULKAN设置为OFF，不然编译不通过</p>
+<p>mkdir build &amp;&amp; cd build<br>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -DProtobuf_INCLUDE_DIR&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;include -DProtobuf_LIBRARIES&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;lib&#x2F;libprotobuf.lib -DProtobuf_PROTOC_EXECUTABLE&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;bin&#x2F;protoc.exe -DNCNN_VULKAN&#x3D;OFF ..<br>nmake<br>nmake install</p>
+<p>D:\Projects\protobuf\protobuf-3.4.0<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0</p>
+<p>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -DProtobuf_INCLUDE_DIR&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;include -DProtobuf_LIBRARIES&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;lib&#x2F;libprotobuf.lib -DProtobuf_PROTOC_EXECUTABLE&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;bin&#x2F;protoc.exe -DNCNN_VULKAN&#x3D;OFF ..</p>
+<p>包含目录：<br><opencv-root-dir>&#x2F;build&#x2F;include<br><opencv-root-dir>&#x2F;build&#x2F;include&#x2F;opencv<br><opencv-root-dir>&#x2F;build&#x2F;include&#x2F;opencv2<br><ncnn-root-dir>&#x2F;build&#x2F;install&#x2F;include&#x2F;ncnn<br><protobuf-root-dir>&#x2F;build&#x2F;install&#x2F;include </p>
+<p>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;include<br>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;include&#x2F;opencv2<br>D:&#x2F;Projects&#x2F;ncnn&#x2F;build&#x2F;install&#x2F;include&#x2F;ncnn<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;include </p>
+<p>库目录：<br>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;x64&#x2F;vc15&#x2F;lib<br>D:&#x2F;Projects&#x2F;ncnn&#x2F;build&#x2F;install&#x2F;lib<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;lib</p>
+<p>依赖项<br>ncnn.lib<br>libprotobuf.lib<br>opencv_world455.lib</p>
+<p>ncnn.lib<br>libprotobuf.lib<br>opencv_world460.lib</p>
 
       <div class="tags">
           <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i> 计算机视觉</a>
@@ -283,7 +328,7 @@ yuan = xi</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-07-21 18:06:20" itemprop="dateModified" datetime="2022-07-21T18:06:20+08:00">2022-07-21</time>
+    <time title="Modified: 2022-07-22 14:43:53" itemprop="dateModified" datetime="2022-07-22T14:43:53+08:00">2022-07-22</time>
   </span>
 </div>
 
@@ -338,7 +383,7 @@ yuan = xi</title>
     <div class="item left">
       
 
-  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicliierfjj20zk0m8npd.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
+  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipew8gmvyj20zk0m87wh.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 人工智能</span>
   <h3>ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</h3>
@@ -346,6 +391,14 @@ yuan = xi</title>
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2022/07/21/csp-code/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetfk5zwj20zk0m8e81.jpg" title="csp-code">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 程序设计</span>
+  <h3>csp-code</h3>
+  </a>
+
     </div>
 </div>
 
@@ -362,7 +415,7 @@ yuan = xi</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F"><span class="toc-number">1.</span> <span class="toc-text">读取图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">显示图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%9B%BE%E5%83%8F"><span class="toc-number">3.</span> <span class="toc-text">保存图像</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F"><span class="toc-number">1.</span> <span class="toc-text">读取图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">显示图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%9B%BE%E5%83%8F"><span class="toc-number">3.</span> <span class="toc-text">保存图像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E9%83%A8%E5%88%86"><span class="toc-number"></span> <span class="toc-text">C++部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
@@ -380,19 +433,19 @@ yuan = xi</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">4</span>
+        <span class="count">7</span>
         <span class="name">posts</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">3</span>
+        <span class="count">4</span>
         <span class="name">categories</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">5</span>
+        <span class="count">9</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -443,10 +496,12 @@ yuan = xi</title>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2022/07/21/csp-code/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -468,10 +523,10 @@ yuan = xi</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+<a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="In 程序设计">程序设计</a>
 </div>
 
-    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
+    <span><a href="/2022/07/21/csp-code/" title="csp-code">csp-code</a></span>
   </li>
 
       
@@ -482,6 +537,35 @@ yuan = xi</title>
 </div>
 
     <span><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/22/pytorch%E5%85%A5%E9%97%A8/" title="pytorch入门">pytorch入门</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/22/csdn%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E4%B8%BAmd/" title="csdn博客导出为md">csdn博客导出为md</a></span>
   </li>
 
       
