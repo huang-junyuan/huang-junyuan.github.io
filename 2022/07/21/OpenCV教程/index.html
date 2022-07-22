@@ -102,12 +102,12 @@ yuan = xi</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclga70tsj20zk0m84mr.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
         </ul>
       </div>
     </header>
@@ -301,18 +301,8 @@ yuan = xi</title>
 <p>后面加d的表示debug版本的，因为上面配置的是release版本的，所以选择不加d的。</p>
 <p><img data-src="/../images/2022-07-22-12-10-02.png"></p>
 <p>配置环境变量，由于使用的是vs2022，所以配置的是vc15的。</p>
-<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat img = <span class="built_in">imread</span>(<span class="string">&quot;D:\\Temp\\images\\img.jpg&quot;</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;img&quot;</span>, img);</span><br><span class="line">	<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">destroyAllWindows</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat img = <span class="built_in">imread</span>(<span class="string">&quot;D:\\Temp\\images\\img.jpg&quot;</span>);</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;img&quot;</span>, img);</span><br><span class="line">	<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">destroyAllWindows</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>cd <protobuf-root-dir><br>mkdir build-2022<br>cd build-2022<br>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -Dprotobuf_BUILD_TESTS&#x3D;OFF -Dprotobuf_MSVC_STATIC_RUNTIME&#x3D;OFF ..&#x2F;cmake<br>nmake<br>nmake install</p>
-<p>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubi5naXQ=">https://github.com/Tencent/ncnn.git</span><br>cd ncnn<br>git submodule update –init         # 如果这一步一直更新不了的话，需要把cmake编译时候的-DNCNN_VULKAN设置为OFF，不然编译不通过</p>
-<p>mkdir build &amp;&amp; cd build<br>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -DProtobuf_INCLUDE_DIR&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;include -DProtobuf_LIBRARIES&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;lib&#x2F;libprotobuf.lib -DProtobuf_PROTOC_EXECUTABLE&#x3D;<protobuf-root-dir>&#x2F;build-2022&#x2F;install&#x2F;bin&#x2F;protoc.exe -DNCNN_VULKAN&#x3D;OFF ..<br>nmake<br>nmake install</p>
-<p>D:\Projects\protobuf\protobuf-3.4.0<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0</p>
-<p>cmake -G”NMake Makefiles” -DCMAKE_BUILD_TYPE&#x3D;Release -DCMAKE_INSTALL_PREFIX&#x3D;%cd%&#x2F;install -DProtobuf_INCLUDE_DIR&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;include -DProtobuf_LIBRARIES&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;lib&#x2F;libprotobuf.lib -DProtobuf_PROTOC_EXECUTABLE&#x3D;D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;bin&#x2F;protoc.exe -DNCNN_VULKAN&#x3D;OFF ..</p>
-<p>包含目录：<br><opencv-root-dir>&#x2F;build&#x2F;include<br><opencv-root-dir>&#x2F;build&#x2F;include&#x2F;opencv<br><opencv-root-dir>&#x2F;build&#x2F;include&#x2F;opencv2<br><ncnn-root-dir>&#x2F;build&#x2F;install&#x2F;include&#x2F;ncnn<br><protobuf-root-dir>&#x2F;build&#x2F;install&#x2F;include </p>
-<p>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;include<br>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;include&#x2F;opencv2<br>D:&#x2F;Projects&#x2F;ncnn&#x2F;build&#x2F;install&#x2F;include&#x2F;ncnn<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;include </p>
-<p>库目录：<br>D:&#x2F;software&#x2F;opencv&#x2F;build&#x2F;x64&#x2F;vc15&#x2F;lib<br>D:&#x2F;Projects&#x2F;ncnn&#x2F;build&#x2F;install&#x2F;lib<br>D:&#x2F;Projects&#x2F;protobuf&#x2F;protobuf-3.4.0&#x2F;build-2022&#x2F;install&#x2F;lib</p>
-<p>依赖项<br>ncnn.lib<br>libprotobuf.lib<br>opencv_world455.lib</p>
-<p>ncnn.lib<br>libprotobuf.lib<br>opencv_world460.lib</p>
 
       <div class="tags">
           <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i> 计算机视觉</a>
@@ -328,7 +318,7 @@ yuan = xi</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-07-22 14:43:53" itemprop="dateModified" datetime="2022-07-22T14:43:53+08:00">2022-07-22</time>
+    <time title="Modified: 2022-07-22 16:19:17" itemprop="dateModified" datetime="2022-07-22T16:19:17+08:00">2022-07-22</time>
   </span>
 </div>
 
@@ -383,7 +373,7 @@ yuan = xi</title>
     <div class="item left">
       
 
-  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevgoki5j20zk0m84qp.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
+  <a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevuctzzj20zk0m84qp.jpg" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 人工智能</span>
   <h3>ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</h3>
@@ -393,7 +383,7 @@ yuan = xi</title>
     <div class="item right">
       
 
-  <a href="/2022/07/21/csp-code/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicljitigmj20zk0m87fp.jpg" title="csp-code">
+  <a href="/2022/07/21/csp-code/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="csp-code">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 程序设计</span>
   <h3>csp-code</h3>
@@ -523,38 +513,6 @@ yuan = xi</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" title="In 计算机视觉">计算机视觉</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
-</div>
-
-    <span><a href="/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/" title="OpenCV教程">OpenCV教程</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
-</div>
-
-    <span><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="In 程序设计">程序设计</a>
-</div>
-
-    <span><a href="/2022/07/21/csp-code/" title="csp-code">csp-code</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
 </div>
 
@@ -565,9 +523,10 @@ yuan = xi</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="In 程序设计">程序设计</a>
 </div>
 
-    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/2022/07/21/csp-code/" title="csp-code">csp-code</a></span>
   </li>
 
       
@@ -596,7 +555,38 @@ yuan = xi</title>
 <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
 </div>
 
+    <span><a href="/2022/07/21/ncnn%E5%9C%A8window%EF%BC%8Cvs2019%EF%BC%8Ccmake-3-16-5-win64-x64%E7%BC%96%E8%AF%91/" title="ncnn在window，vs2019，cmake-3.16.5-win64-x64编译">ncnn在window，vs2019，cmake-3.16.5-win64-x64编译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
     <span><a href="/2022/07/22/ncnn%E5%92%8Copencv%E5%9C%A8vs2022%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%E6%8E%A8%E7%90%86%E7%A4%BA%E4%BE%8B/" title="ncnn和opencv在vs2022上创建工程推理示例">ncnn和opencv在vs2022上创建工程推理示例</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" title="In 计算机视觉">计算机视觉</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E6%95%99%E7%A8%8B/" title="OpenCV教程">OpenCV教程</a></span>
   </li>
 
   </ul>

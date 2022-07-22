@@ -102,12 +102,12 @@ yuan = xi</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitf0kl1j20zk0m87fe.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
         </ul>
       </div>
     </header>
@@ -165,17 +165,17 @@ yuan = xi</title>
 <p>protobuf-root-dir 是刚才编译的protobuf的目录，根据自己的来修改。</p>
 <h4 id="1-2-安装opencv"><a href="#1-2-安装opencv" class="headerlink" title="1.2 安装opencv"></a>1.2 安装opencv</h4><p>opencv的安装比较简单，去<span class="exturl" data-url="aHR0cHM6Ly9vcGVuY3Yub3JnL3JlbGVhc2VzLw==">opencv官网</span>下载windows的文件下来安装即可，会得到一个opencv的文件夹<br><img data-src="/../images/d62ba77b10b44564a55f07f8edb8b7d7.png" alt="图 2"></p>
 <h3 id="二、项目配置"><a href="#二、项目配置" class="headerlink" title="二、项目配置"></a>二、项目配置</h3><p>打开vs2022，新建一个空项目：<br><img data-src="/../images/c4967697e3ea4cb79feb7793bf5761ff.png" alt="图 3"><br> 得到空项目结构如下：<br><img data-src="/../images/1ca28005f2f940e6860d728c93f8a800.png" alt="图 4"><br> 然后依次点击<strong>视图&#x3D;&gt;其他窗口&#x3D;&gt;属性管理器</strong>，在Release | x64（与上面编译过程中的参数对应）处右击进入属性界面。点击<strong>VC++ 目录</strong>，在<strong>包含目录</strong>中依次添加如下内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include </span><br><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include/opencv </span><br><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include/opencv2 </span><br><span class="line">&lt;ncnn-root-<span class="built_in">dir</span>&gt;/build/install/include/ncnn</span><br><span class="line">&lt;protobuf-root-<span class="built_in">dir</span>&gt;/build/install/include </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include </span><br><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include/opencv </span><br><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/include/opencv2 </span><br><span class="line">&lt;ncnn-root-<span class="built_in">dir</span>&gt;/build/install/include/ncnn</span><br><span class="line">&lt;protobuf-root-<span class="built_in">dir</span>&gt;/build/install/include </span><br><span class="line"></span><br><span class="line">我的配置</span><br><span class="line">D:/software/opencv/build/include</span><br><span class="line">D:/software/opencv/build/include/opencv2 </span><br><span class="line">D:/Projects/ncnn/build/install/include/ncnn</span><br><span class="line">D:/Projects/protobuf/protobuf-<span class="number">3.4</span><span class="number">.0</span>/build-<span class="number">2022</span>/install/include </span><br></pre></td></tr></table></figure>
 
 
 
 <p><img data-src="/../images/71331ec3755746b2b7f9f73c49dfcdab.png" alt="图 5"><br> 在<strong>库目录</strong>中依次添加如下内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/x64/vc15/lib</span><br><span class="line">&lt;ncnn-root-<span class="built_in">dir</span>&gt;/build/install/lib</span><br><span class="line">&lt;protobuf-root-<span class="built_in">dir</span>&gt;/build/install/lib</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;opencv-root-<span class="built_in">dir</span>&gt;/build/x64/vc15/lib</span><br><span class="line">&lt;ncnn-root-<span class="built_in">dir</span>&gt;/build/install/lib</span><br><span class="line">&lt;protobuf-root-<span class="built_in">dir</span>&gt;/build/install/lib</span><br><span class="line"></span><br><span class="line">我的配置</span><br><span class="line">D:/software/opencv/build/x64/vc15/lib</span><br><span class="line">D:/Projects/ncnn/build/install/lib</span><br><span class="line">D:/Projects/protobuf/protobuf-<span class="number">3.4</span><span class="number">.0</span>/build-<span class="number">2022</span>/install/lib</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 <p><img data-src="/../images/7d5c60f1bb5d4f089a4add01db90128a.png" alt="图 6"><br> 然后在属性界面选择<strong>链接器&#x3D;&gt;输入</strong>，在<strong>附加依赖项</strong>中依次添加如下内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ncnn.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">opencv_world455.lib</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ncnn.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">opencv_world455.lib</span><br><span class="line"></span><br><span class="line">我的配置</span><br><span class="line">ncnn.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">opencv_world460.lib</span><br></pre></td></tr></table></figure>
 
 
 
@@ -204,7 +204,7 @@ yuan = xi</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-07-22 16:10:25" itemprop="dateModified" datetime="2022-07-22T16:10:25+08:00">2022-07-22</time>
+    <time title="Modified: 2022-07-22 16:19:22" itemprop="dateModified" datetime="2022-07-22T16:19:22+08:00">2022-07-22</time>
   </span>
 </div>
 
@@ -259,7 +259,7 @@ yuan = xi</title>
     <div class="item left">
       
 
-  <a href="/2022/07/22/csdn%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E4%B8%BAmd/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipey0a334j20zk0m8qpt.jpg" title="csdn博客导出为md">
+  <a href="/2022/07/22/csdn%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E4%B8%BAmd/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclga70tsj20zk0m84mr.jpg" title="csdn博客导出为md">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>csdn博客导出为md</h3>
@@ -402,17 +402,7 @@ yuan = xi</title>
 <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
 </div>
 
-    <span><a href="/2022/07/22/pytorch%E5%85%A5%E9%97%A8/" title="pytorch入门">pytorch入门</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
-</div>
-
-    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
+    <span><a href="/2022/07/22/ncnn%E5%92%8Copencv%E5%9C%A8vs2022%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%E6%8E%A8%E7%90%86%E7%A4%BA%E4%BE%8B/" title="ncnn和opencv在vs2022上创建工程推理示例">ncnn和opencv在vs2022上创建工程推理示例</a></span>
   </li>
 
       
@@ -423,15 +413,6 @@ yuan = xi</title>
 </div>
 
     <span><a href="/2022/07/21/csp-code/" title="csp-code">csp-code</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/07/22/csdn%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E4%B8%BAmd/" title="csdn博客导出为md">csdn博客导出为md</a></span>
   </li>
 
       
@@ -450,10 +431,9 @@ yuan = xi</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
 </div>
 
-    <span><a href="/2022/07/22/ncnn%E5%92%8Copencv%E5%9C%A8vs2022%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%E6%8E%A8%E7%90%86%E7%A4%BA%E4%BE%8B/" title="ncnn和opencv在vs2022上创建工程推理示例">ncnn和opencv在vs2022上创建工程推理示例</a></span>
+    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -462,7 +442,27 @@ yuan = xi</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2022/07/21/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/2022/07/22/csdn%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E4%B8%BAmd/" title="csdn博客导出为md">csdn博客导出为md</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/22/pytorch%E5%85%A5%E9%97%A8/" title="pytorch入门">pytorch入门</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="In 人工智能">人工智能</a>
+</div>
+
+    <span><a href="/2022/07/21/OpenCV%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" title="OpenCV轮廓检测">OpenCV轮廓检测</a></span>
   </li>
 
   </ul>
